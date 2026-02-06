@@ -73,7 +73,7 @@ Thumbs.db
 
 # Project specific
 *.csv
-*.png
+# *.png
 *.jpg
 *.jpeg
 *.gif
