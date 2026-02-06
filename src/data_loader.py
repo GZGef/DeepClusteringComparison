@@ -24,8 +24,12 @@ def load_and_preprocess_data(url: str = None, file_path: str = 'Mall_Customers.c
     # Загрузка данных
     if url and not os.path.exists(file_path):
         print(f"Загрузка датасета с {url}...")
-        import subprocess
-        subprocess.run(['wget', url, '-O', file_path], check=True)
+        import requests
+        response = requests.get(url)
+        response.raise_for_status()
+        with open(file_path, 'wb') as f:
+            f.write(response.content)
+        print(f"Датасет успешно загружен: {file_path}")
     
     print(f"Загрузка данных из {file_path}...")
     df = pd.read_csv(file_path, sep=',')
